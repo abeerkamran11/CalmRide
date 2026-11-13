@@ -16,49 +16,43 @@ export const ROUTE_S1_STOPS: RouteStop[] = [
     name: 'Ecclesall Road',
     shortName: 'Ecclesall Rd',
     isDestinationOption: false,
-    exitDirections:
-      'Before you step off: The corner chemist and wooden bus shelter are right beside the front doors.',
+    exitDirections: 'Bus shelter and chemist are right outside.',
   },
   {
     id: 'botanical-gardens',
     name: 'Botanical Gardens',
     shortName: 'Botanical Gardens',
     isDestinationOption: true,
-    exitDirections:
-      'Before you step off: The stone Botanical Gardens gate is 25 yards to your right along the flat paved footpath.',
+    exitDirections: 'Gardens gate is 25 yards to your right.',
   },
   {
     id: 'hallamshire-hospital',
     name: 'Royal Hallamshire Hospital',
     shortName: 'Hallamshire Hospital',
     isDestinationOption: true,
-    exitDirections:
-      'Before you step off: Outpatients automatic glass doors are 30 yards straight ahead under the covered walkway.',
+    exitDirections: 'Outpatients doors are 30 yards straight ahead.',
   },
   {
     id: 'moor-market',
     name: 'Moor Market',
     shortName: 'Moor Market',
     isDestinationOption: true,
-    exitDirections:
-      'Before you step off: Moor Market entrance is 40 yards to your left, past the zebra crossing.',
+    exitDirections: 'Moor Market entrance is 40 yards left, past the crossing.',
   },
   {
     id: 'sheffield-centre',
     name: 'Sheffield City Centre',
     shortName: 'City Centre',
     isDestinationOption: true,
-    exitDirections:
-      'Before you step off: Town Hall steps and Peace Gardens benches are 35 yards ahead past the clock tower.',
+    exitDirections: 'Town Hall and Peace Gardens are 35 yards ahead.',
   },
 ];
 
 export const SARAH_HELPER = {
   name: 'Sarah – Sheffield Control Centre',
-  connectionBadge: 'Connected: Shuttle S1 • Seat #2 (Identity Private)',
-  photoUrl: '/src/assets/images/steward_portrait_1794573002152.jpg',
+  connectionBadge: 'Shuttle S1 • Seat #2 (Private)',
   greetingCaption:
-    "Hello! I'm Sarah at the Sheffield control centre. I can see Shuttle S1 and Seat 2—no personal details are shared. You're completely safe. How can I help?",
+    "Hello! I'm Sarah at Sheffield Control Centre. I can see Shuttle S1—you're completely safe. How can I help?",
 };
 
 export const RIDE_STATE_COPY: Record<
@@ -71,28 +65,24 @@ export const RIDE_STATE_COPY: Record<
 > = {
   cruising: {
     badge: 'Cruising Smoothly — 18 mph',
-    message: 'Clear road along Ecclesall Road. Everything is running smoothly.',
+    message: 'Clear road ahead.',
     spokenText: 'Road ahead is clear. Cruising smoothly at 18 miles per hour.',
   },
   slowdown: {
-    badge: 'Slowing Down Safely',
-    message:
-      "Slowing down safely — I've spotted a delivery van parked ahead and am waiting for space to pass.",
-    spokenText:
-      "Slowing down safely. I've spotted a delivery van parked ahead and am waiting for space to pass.",
+    badge: 'Slowing Safely',
+    message: 'Slowing safely — delivery van parked ahead.',
+    spokenText: 'Slowing down safely. There is a delivery van parked ahead.',
   },
   'safe-failure': {
-    badge: 'Pulled Over Safely · Replacement On Way',
+    badge: 'Pulled Over Safely · Replacement in 3 mins',
     message:
-      "We've safely pulled over due to roadworks ahead. Sarah at Control Centre has already dispatched a replacement shuttle 3 minutes away—you don't need to do a thing.",
+      'Pulled over for roadworks. A replacement shuttle arrives in 3 mins.',
     spokenText:
-      "We've safely pulled over due to roadworks ahead. Sarah at Control Centre has already dispatched a replacement shuttle 3 minutes away. You don't need to do a thing.",
+      'Pulled over safely for roadworks. A replacement shuttle arrives in 3 minutes.',
   },
   arriving: {
-    badge: 'Approaching Your Stop',
-    message:
-      'Approaching your destination — slowing smoothly toward the step-free curb.',
-    spokenText:
-      'Approaching your stop now. Slowing smoothly to pull right up to the pavement.',
+    badge: 'Approaching Stop',
+    message: 'Approaching your stop — pulling in smoothly.',
+    spokenText: 'Approaching your stop now. Pulling in smoothly.',
   },
 };

@@ -6,7 +6,6 @@ import {
   Smile,
   Compass,
   Smartphone,
-  ShieldCheck,
   Trash2,
 } from 'lucide-react';
 
@@ -46,7 +45,7 @@ function SimulatedQrCode() {
     <svg
       viewBox="0 0 22 22"
       role="img"
-      aria-label="QR code to scan with your own phone to send an I've Arrived Safely message"
+      aria-label="QR code to scan with your phone"
       className="w-24 h-24 bg-white p-1 rounded-xl border-2 border-[#0F233C] shrink-0"
     >
       {modules.map((row, y) =>
@@ -106,47 +105,43 @@ export function ArrivalOverlay({
       aria-labelledby="arrival-title"
       className="absolute inset-0 z-30 bg-[#0F233C]/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5"
     >
-      <div className="w-full max-w-4xl bg-[#FAF9F5] border-2 border-[#0D6E4E] rounded-3xl shadow-2xl p-5 sm:p-6 space-y-3.5">
+      <div className="w-full max-w-4xl max-h-full overflow-y-auto bg-[#FAF9F5] border-2 border-[#0D6E4E] rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4">
         {/* Safe Arrival Heading */}
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-[#E3F4ED] border-2 border-[#0D6E4E] flex items-center justify-center shrink-0">
-              <CheckCircle2
-                className="w-7 h-7 text-[#0D6E4E]"
-                aria-hidden="true"
-              />
-            </div>
-            <div>
-              <h2
-                id="arrival-title"
-                className="text-2xl sm:text-3xl font-extrabold text-[#0F233C] leading-tight"
-              >
-                You&apos;ve Arrived Safely!
-              </h2>
-              <p className="text-[20px] font-bold text-[#0D6E4E]">
-                {destinationName} · Step-Free Doors Open
-              </p>
-            </div>
+        <div className="flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-2xl bg-[#E3F4ED] border-2 border-[#0D6E4E] flex items-center justify-center shrink-0">
+            <CheckCircle2
+              className="w-7 h-7 text-[#0D6E4E]"
+              aria-hidden="true"
+            />
+          </div>
+          <div>
+            <h2
+              id="arrival-title"
+              className="text-2xl sm:text-3xl font-extrabold text-[#0F233C] leading-tight"
+            >
+              You&apos;ve Arrived Safely!
+            </h2>
+            <p className="text-[20px] font-bold text-[#0D6E4E]">
+              {destinationName} · Doors Open
+            </p>
           </div>
         </div>
 
-        {/* Landmark-Based Exit Directions */}
-        <div className="bg-[#E3F4ED] border-2 border-[#0D6E4E] rounded-2xl px-4 py-3 flex items-start gap-3">
+        {/* Concise Landmark Exit Directions */}
+        <div className="bg-[#E3F4ED] border-2 border-[#0D6E4E] rounded-2xl px-4 py-3 flex items-center gap-3">
           <Compass
-            className="w-7 h-7 text-[#084732] shrink-0 mt-0.5"
+            className="w-7 h-7 text-[#084732] shrink-0"
             aria-hidden="true"
           />
           <p className="text-[20px] font-semibold text-[#0F233C] leading-snug">
-            <span className="font-extrabold text-[#084732]">
-              Landmark Exit Directions:{' '}
-            </span>
+            <span className="font-extrabold text-[#084732]">Exit: </span>
             {exitDirections}
           </p>
         </div>
 
-        {/* Middle Two-Column Row: QR Code + 3-Face Anonymous Comfort Check */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-stretch">
-          <div className="md:col-span-6 bg-white border-2 border-[#3B6284] rounded-2xl p-3.5 flex items-center gap-3.5">
+        {/* Middle Two-Column Row: Concise QR Message + Comfort Check */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
+          <div className="md:col-span-6 bg-white border-2 border-[#3B6284] rounded-2xl p-4 flex items-center gap-3.5">
             <SimulatedQrCode />
             <div className="space-y-1">
               <div className="flex items-center gap-1.5 text-[#0F233C]">
@@ -155,28 +150,23 @@ export function ArrivalOverlay({
                   aria-hidden="true"
                 />
                 <p className="text-[20px] font-extrabold leading-tight">
-                  Message Family Yourself
+                  Message Family
                 </p>
               </div>
               <p className="text-[20px] text-[#2B435E] leading-snug">
-                Scan with your own phone to send an &apos;I&apos;ve Arrived Safely&apos; message (nothing sent from this bus).
+                Scan with your phone to send an &apos;I&apos;ve Arrived&apos; text.
               </p>
             </div>
           </div>
 
-          <div className="md:col-span-6 bg-white border-2 border-[#3B6284] rounded-2xl p-3.5 flex flex-col justify-between gap-2">
-            <div>
-              <p className="text-[20px] font-extrabold text-[#0F233C] leading-tight">
-                How calm did you feel?
-              </p>
-              <p className="text-[18px] font-semibold text-[#2B435E]">
-                Anonymous feedback to help improve Route S1
-              </p>
-            </div>
+          <div className="md:col-span-6 bg-white border-2 border-[#3B6284] rounded-2xl p-4 flex flex-col justify-between gap-2.5">
+            <p className="text-[20px] font-extrabold text-[#0F233C] leading-tight">
+              How did you feel?
+            </p>
 
             <div
               role="radiogroup"
-              aria-label="How calm did you feel? Anonymous feedback to help improve Route S1"
+              aria-label="How did you feel?"
               className="grid grid-cols-3 gap-2"
             >
               {feelings.map(({ id, label, Icon }) => {
@@ -188,7 +178,7 @@ export function ArrivalOverlay({
                     role="radio"
                     aria-checked={selected}
                     onClick={() => setFeeling(id)}
-                    className={`min-h-[68px] p-2 rounded-2xl border-2 flex flex-col items-center justify-center gap-1 transition-colors cursor-pointer ${
+                    className={`min-h-[72px] p-2 rounded-2xl border-2 flex flex-col items-center justify-center gap-1 transition-colors cursor-pointer ${
                       selected
                         ? 'bg-[#E3F4ED] border-[#0D6E4E] text-[#084732]'
                         : 'bg-[#FAF9F5] border-[#3B6284] text-[#0F233C] hover:bg-[#E9EFF5]'
@@ -205,7 +195,7 @@ export function ArrivalOverlay({
           </div>
         </div>
 
-        {/* Finish & Clear Screen Now + Auto-Wipe Countdown */}
+        {/* Finish & Clear Screen Now */}
         <div className="space-y-1.5">
           <button
             type="button"
@@ -216,18 +206,12 @@ export function ArrivalOverlay({
             <span>Finish &amp; Clear Screen Now</span>
           </button>
 
-          <p className="text-center text-[20px] font-semibold text-[#2B435E] flex items-center justify-center gap-2">
-            <ShieldCheck
-              className="w-5 h-5 text-[#0D6E4E] shrink-0"
-              aria-hidden="true"
-            />
-            <span>
-              Screen automatically clears and wipes this trip when you stand up (
-              <span className="font-mono tabular-nums font-bold text-[#0F233C]">
-                {autoClearSeconds}s
-              </span>
-              )
+          <p className="text-center text-[20px] font-semibold text-[#2B435E]">
+            Auto-clears when you stand (
+            <span className="font-mono tabular-nums font-bold text-[#0F233C]">
+              {autoClearSeconds}s
             </span>
+            )
           </p>
         </div>
       </div>

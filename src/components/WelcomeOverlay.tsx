@@ -4,7 +4,6 @@ import {
   Bell,
   ArrowRight,
   Volume2,
-  ShieldCheck,
   CreditCard,
   Check,
 } from 'lucide-react';
@@ -50,33 +49,40 @@ export function WelcomeOverlay({ onComplete }: WelcomeOverlayProps) {
       aria-labelledby="welcome-card-title"
       className="absolute inset-0 z-30 bg-[#0F233C]/55 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5"
     >
-      <div className="w-full max-w-4xl bg-[#FAF9F5] border-2 border-[#3B6284] rounded-3xl shadow-2xl p-5 sm:p-6 space-y-3.5">
-        {/* Calm Green Privacy Pill Badge */}
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="inline-flex items-center gap-2 bg-[#E3F4ED] border-2 border-[#0D6E4E] text-[#084732] px-3.5 py-1 rounded-full">
-            <ShieldCheck className="w-5 h-5 shrink-0" aria-hidden="true" />
-            <span className="text-[20px] font-bold leading-tight">
-              Private Seat Session • Zero personal data collected or stored
-            </span>
-          </div>
-          <span className="text-[20px] font-bold text-[#0D6E4E]">
-            Route S1 · Sheffield Shuttle
-          </span>
-        </div>
-
+      <div className="w-full max-w-4xl max-h-full overflow-y-auto bg-[#FAF9F5] border-2 border-[#3B6284] rounded-3xl shadow-2xl p-5 sm:p-6 space-y-4">
         {step === 'destination' ? (
           <>
-            <div className="space-y-0.5">
-              <h2
-                id="welcome-card-title"
-                className="text-2xl sm:text-3xl font-extrabold text-[#0F233C]"
-              >
-                Welcome aboard! No account or login needed.
-              </h2>
-              <p className="text-[20px] font-semibold text-[#2B435E]">
-                Where are you heading today?
-              </p>
-            </div>
+            <h2
+              id="welcome-card-title"
+              className="text-2xl sm:text-3xl font-extrabold text-[#0F233C]"
+            >
+              Welcome aboard! Where are you heading?
+            </h2>
+
+            {/* Council Helper Card Button Placed High on Screen */}
+            <button
+              type="button"
+              onClick={handleApplyHelperCard}
+              className={`w-full min-h-[56px] px-4 py-2.5 rounded-2xl border-2 text-[20px] font-bold flex items-center justify-center gap-2.5 transition-colors cursor-pointer ${
+                helperCardApplied
+                  ? 'bg-[#E3F4ED] text-[#084732] border-[#0D6E4E]'
+                  : 'bg-[#E9EFF5] text-[#0F233C] border-[#3B6284] hover:bg-[#DCE6EE]'
+              }`}
+            >
+              {helperCardApplied ? (
+                <>
+                  <Check className="w-6 h-6 shrink-0" aria-hidden="true" />
+                  <span>Calm settings applied</span>
+                </>
+              ) : (
+                <>
+                  <CreditCard className="w-6 h-6 shrink-0" aria-hidden="true" />
+                  <span>
+                    Using a Council Helper Card? Tap to apply calm preferences
+                  </span>
+                </>
+              )}
+            </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {destinationOptions.map((stop) => (
@@ -103,35 +109,11 @@ export function WelcomeOverlay({ onComplete }: WelcomeOverlayProps) {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 pt-0.5">
-              <button
-                type="button"
-                onClick={handleApplyHelperCard}
-                className={`flex-1 w-full min-h-[56px] px-4 py-2.5 rounded-2xl border-2 text-[20px] font-bold flex items-center justify-center gap-2.5 transition-colors cursor-pointer ${
-                  helperCardApplied
-                    ? 'bg-[#E3F4ED] text-[#084732] border-[#0D6E4E]'
-                    : 'bg-[#E9EFF5] text-[#0F233C] border-[#3B6284] hover:bg-[#DCE6EE]'
-                }`}
-              >
-                {helperCardApplied ? (
-                  <>
-                    <Check className="w-6 h-6 shrink-0" aria-hidden="true" />
-                    <span>Calm preferences applied</span>
-                  </>
-                ) : (
-                  <>
-                    <CreditCard className="w-6 h-6 shrink-0" aria-hidden="true" />
-                    <span>
-                      Using a Council Helper Card? Tap to apply calm preferences
-                    </span>
-                  </>
-                )}
-              </button>
-
+            <div className="text-center">
               <button
                 type="button"
                 onClick={() => onComplete(null, updateLevel, voiceStyle)}
-                className="min-h-[56px] px-5 py-2.5 rounded-2xl text-[20px] font-semibold text-[#2B435E] underline underline-offset-4 hover:text-[#0F233C] shrink-0 cursor-pointer"
+                className="min-h-[48px] px-5 py-2 rounded-2xl text-[20px] font-semibold text-[#2B435E] underline underline-offset-4 hover:text-[#0F233C] cursor-pointer"
               >
                 Skip — just enjoy the ride
               </button>
@@ -141,21 +123,20 @@ export function WelcomeOverlay({ onComplete }: WelcomeOverlayProps) {
           <>
             <div className="space-y-0.5">
               <p className="text-[20px] font-bold text-[#0D6E4E]">
-                Destination set: {chosenDest?.name}
+                Stop: {chosenDest?.name}
               </p>
               <h2
                 id="welcome-card-title"
                 className="text-2xl sm:text-3xl font-extrabold text-[#0F233C]"
               >
-                Choose how you&apos;d like your updates
+                Choose your update settings
               </h2>
             </div>
 
-            {/* Two Preference Toggles Side-by-Side so Card Fits Cleanly */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <p className="text-[20px] font-bold text-[#0F233C]">
-                  Update Level
+                  Frequency of updates
                 </p>
                 <div className="flex flex-col gap-2.5">
                   <button
@@ -219,14 +200,13 @@ export function WelcomeOverlay({ onComplete }: WelcomeOverlayProps) {
               </div>
             </div>
 
-            {/* Armrest Vibration Notice */}
             <div className="bg-[#E3F4ED] border-2 border-[#0D6E4E] rounded-2xl px-4 py-3 flex items-center gap-3">
               <Bell
-                className="w-7 h-7 text-[#084732] shrink-0"
+                className="w-6 h-6 text-[#084732] shrink-0"
                 aria-hidden="true"
               />
               <p className="text-[20px] font-semibold text-[#084732]">
-                When we are 1 stop away, your seat armrests will gently vibrate so you never miss your stop.
+                Your armrests will gently vibrate 1 stop before your arrival.
               </p>
             </div>
 

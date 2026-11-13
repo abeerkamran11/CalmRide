@@ -99,7 +99,7 @@ export function RouteCountdownBar({
               aria-live="polite"
               className="px-3.5 py-1.5 rounded-2xl bg-[#FEF3C7] border-2 border-[#D97706] text-[#78350F] text-[20px] font-extrabold"
             >
-              Approaching your stop — seat armrests vibrating gently.
+              1 stop away — armrests vibrating gently.
             </div>
           ) : hasArrived ? (
             <div
