@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-sans: "Public Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 16px;
+  }
+
+  body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: "Public Sans", system-ui, -apple-system, sans-serif;
+    font-size: 20px;
+    line-height: 1.4;
+    color: #0F233C;
+    background-color: #FAF9F5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 4px solid #0F233C;
+    outline-offset: 2px;
+  }
+}
+
+@keyframes gentlePulseRing {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.35);
+    background-color: #FEF3C7;
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(217, 119, 6, 0);
+    background-color: #FDE68A;
+  }
+}
+
+.armrest-pulse {
+  animation: gentlePulseRing 2s ease-in-out infinite;
+}
+
+@keyframes waveformBounce {
+  0%, 100% {
+    transform: scaleY(0.28);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.wave-bar {
+  transform-origin: center;
+  animation: waveformBounce 0.75s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Oakwood Town Shuttle",
+  "description": "Accessible public transit companion app for older adults and underserved communities riding a local autonomous shuttle, with plain-language updates, boarding reassurance, door-to-door pickup, live human helper support, and matching in-cabin display.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
